@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Alive { alive, dead }
+
 public class PlayerController : MonoBehaviour
 {
     #region moveVariable
@@ -23,19 +25,27 @@ public class PlayerController : MonoBehaviour
 
     public float maxHealth, currentHealth;
 
+    
+    public Alive alive;
+
     void Start()
     {
         currentHealth = maxHealth;
         characterController = GetComponent<CharacterController>();
         playerCamera = Camera.main;
-
+        
         // Lock cursor
-        CursorLock();
+        if(alive == Alive.alive)
+            CursorLock();
     }
 
     void Update()
     {
-        PlayerMovement();
+        if(alive == Alive.alive)
+        {
+            PlayerMovement();
+            Health();
+        }
     }
 
     void CursorLock()
@@ -90,5 +100,14 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+    }
+
+    void Health()
+    {
+        if(currentHealth < 0)
+        {
+            alive = Alive.dead;
+            Debug.Log("died");
+        }
     }
 }
