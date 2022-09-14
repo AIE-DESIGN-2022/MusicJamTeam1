@@ -10,6 +10,7 @@ public class DootGun : MonoBehaviour
     Animator animator;
     AudioSource audioSource;
     private GameObject trumpet;
+    public float range;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +37,7 @@ public class DootGun : MonoBehaviour
         RaycastHit hit;
 
         Vector3 p1 = transform.position + charCtrl.center;
-        if (Physics.SphereCast(p1, charCtrl.height / 2, transform.forward, out hit, 20))
+        if (Physics.SphereCast(p1, charCtrl.height / 2, transform.forward, out hit, range))
         {
             if (hit.collider.tag == "Enemy")
             {
