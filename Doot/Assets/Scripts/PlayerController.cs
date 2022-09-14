@@ -21,8 +21,11 @@ public class PlayerController : MonoBehaviour
     public bool canMove = true;
     #endregion
 
+    public float maxHealth, currentHealth;
+
     void Start()
     {
+        currentHealth = maxHealth;
         characterController = GetComponent<CharacterController>();
         playerCamera = Camera.main;
 
@@ -84,5 +87,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+    }
 }
