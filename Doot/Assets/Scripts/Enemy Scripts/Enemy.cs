@@ -49,15 +49,6 @@ public class Enemy : MonoBehaviour
             TriggerFrenzy();
         if (currentHealth <= 0 && !dead)
             TriggerDead();
-        
-
-        //TESTING
-        /*if (Input.GetKeyDown(KeyCode.F))
-        {
-            RaycastHit hit;
-            if(Physics.Raycast(player.position, player.forward, out hit))
-                Doot(player.forward, 300); 
-        }*/
     }
 
     private void OnCollisionEnter(Collision collision)
