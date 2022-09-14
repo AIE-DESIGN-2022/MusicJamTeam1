@@ -12,7 +12,7 @@ public class DootGun : MonoBehaviour
     void Start()
     {
         charCtrl = GetComponentInParent<CharacterController>();
-        Debug.Log(charCtrl.name);
+        Debug.Log(name + " has found " + charCtrl.name);
     }
 
     // Update is called once per frame
