@@ -14,6 +14,7 @@ public class DootGun : MonoBehaviour
     public float range;
     private float lastFire;
     public float rateOfFire;
+    public float dootForce;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +46,9 @@ public class DootGun : MonoBehaviour
         {
             if (hit.collider.tag == "Enemy")
             {
-                Debug.Log("Push");
+                Debug.Log(hit.collider.name);
+                Grunt g = hit.collider.GetComponentInParent<Grunt>();
+                g.Doot(this.transform.forward, dootForce);
             }
         }
         lastFire = Time.time;
