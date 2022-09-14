@@ -5,20 +5,25 @@ using UnityEngine;
 public class DootGun : MonoBehaviour
 {
     public LayerMask mask = -1;
-    private float distance;
     public Vector3 p1;
     CharacterController charCtrl;
+    Animator animator;
+    AudioSource audioSource;
+    private GameObject trumpet;
     // Start is called before the first frame update
     void Start()
     {
+        trumpet = GameObject.FindGameObjectWithTag("Trumpet");
         charCtrl = GetComponentInParent<CharacterController>();
+        animator = trumpet.GetComponent<Animator>();
+        audioSource = trumpet.GetComponent<AudioSource>();
         Debug.Log(charCtrl.name);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetButtonDown("Fire1"))
         {
             Doot();
         }
@@ -26,6 +31,8 @@ public class DootGun : MonoBehaviour
 
     void Doot()
     {
+        animator.SetTrigger("Doot");
+        audioSource.Play();
         RaycastHit hit;
 
         Vector3 p1 = transform.position + charCtrl.center;
