@@ -9,8 +9,11 @@ public class DootGun : MonoBehaviour
     CharacterController charCtrl;
     Animator animator;
     AudioSource audioSource;
+    BuffManager buffManager;
     private GameObject trumpet;
     public float range;
+    private float lastFire;
+    public float rateOfFire;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,13 +21,14 @@ public class DootGun : MonoBehaviour
         charCtrl = GetComponentInParent<CharacterController>();
         animator = trumpet.GetComponent<Animator>();
         audioSource = trumpet.GetComponent<AudioSource>();
-        Debug.Log(charCtrl.name);
+        buffManager = FindObjectOfType<BuffManager>();
+        lastFire = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && lastFire + rateOfFire < Time.time)
         {
             Doot();
         }
@@ -44,5 +48,6 @@ public class DootGun : MonoBehaviour
                 Debug.Log("Push");
             }
         }
+        lastFire = Time.time;
     }
 }
