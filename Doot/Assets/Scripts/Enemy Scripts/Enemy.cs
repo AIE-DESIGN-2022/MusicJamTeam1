@@ -17,9 +17,10 @@ public class Enemy : MonoBehaviour
 
     #region Patrol
     NavMeshAgent agent;
-    public Transform[] routes;
+    public List<Vector3> routes;
     public int currentRoute, nextRoute;
     public float routeThreshold;
+    public Transform spawner;
     #endregion
 
     #region AI
@@ -39,6 +40,26 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
+        spawner = GetComponentInParent<Transform>();
+        RouteSpawn();
+
+    }
+
+    public virtual void RouteSpawn()
+    {
+        if(routes == null && spawner != null)
+        {
+            float f = Random.Range(2, 6);
+
+            for(int i = 0; i < f; i++)
+            {
+                float x = Random.Range(-10,10);
+                float z = Random.Range(-10,10);
+
+                Vector3 route = new Vector3(x, spawner.position.y, z);
+                routes.Add(route);
+            }
+        }
     }
 
     protected void Update()
@@ -48,6 +69,8 @@ public class Enemy : MonoBehaviour
         if (currentHealth <= maxHealth * 0.2f && !frenzy)
             TriggerFrenzy();
         if (currentHealth <= 0 && !dead)
+            TriggerDead();
+        if (transform.position.y < -5 && !dead)
             TriggerDead();
     }
 
@@ -87,16 +110,16 @@ public class Enemy : MonoBehaviour
     void FollowRoutes()
     {
         if(agent.enabled)
-            agent.SetDestination(routes[currentRoute].position);                                    //set destination to current route on list
+            agent.SetDestination(routes[currentRoute]);                                    //set destination to current route on list
 
-        float distance = Vector3.Distance(transform.position, routes[currentRoute].position);   //check distance between enemy and route
+        float distance = Vector3.Distance(transform.position, routes[currentRoute]);   //check distance between enemy and route
         if (distance < routeThreshold)                                                           //if close enough
         {
             currentRoute = nextRoute;                                                               //pick the next route
             nextRoute++;                                                                            //pick the next route
         }
 
-        if (nextRoute > routes.Length)                                                           //if weve been to all routes
+        if (nextRoute > routes.Count)                                                           //if weve been to all routes
         {
             currentRoute = 0;                                                                       //reset
             nextRoute = 1;
@@ -186,6 +209,18 @@ public class Enemy : MonoBehaviour
         Debug.Log(name + " is dead.");
         state = AIState.dead;
         dead = true;
+    }
+
+    IEnumerator Despawn()
+    {
+        yield return new WaitForSeconds(3);
+        DropHealth();
+        Destroy(gameObject);
+    }
+
+    void DropHealth()
+    {
+        Debug.Log(name + " dropped Health");
     }
 
     public virtual void Doot(Vector3 colliderPoint, float dootForce)
