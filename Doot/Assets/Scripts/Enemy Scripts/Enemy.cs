@@ -78,6 +78,10 @@ public class Enemy : MonoBehaviour
     {
         if (dooted && !dead)
             EnvironmentalDamage(collision);
+        
+        if(collision.collider.name == "Melee")
+            currentHealth -= 20;
+        
     }
 
     void EnvironmentalDamage(Collision collision)
