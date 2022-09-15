@@ -22,6 +22,9 @@ public class PhootDootGun : Gun
     float Timer = 1f;
     bool m_HoldingDownMouseButton = false;
 
+    [SerializeField]
+    float m_StopRange = 2.0f;
+
     List<Collider> m_Targetcolliders = new List<Collider>();
 
     // Start is called before the first frame update
@@ -95,7 +98,17 @@ public class PhootDootGun : Gun
                 {
                     m_Targetcolliders.Add(other);
                 }
-                other.GetComponent<Rigidbody>().AddForce(this.transform.right * dootForce);
+
+                float test = Vector3.Distance(this.transform.position, other.transform.position);
+
+                if (Vector3.Distance(this.transform.position, other.transform.position) > m_StopRange)
+                {
+                    other.GetComponent<Rigidbody>().AddForce(this.transform.right * dootForce);
+                }
+                else
+                {
+                    other.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                }
             }
         }
         
