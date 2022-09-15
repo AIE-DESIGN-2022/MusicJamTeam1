@@ -7,6 +7,7 @@ public class Hud : MonoBehaviour
 {
     public Text healthText;
     public Text buffs;
+    public Text wave;
     public Text one;
     public Text two;
     public Text three;
@@ -41,6 +42,7 @@ public class Hud : MonoBehaviour
     void Update()
     {
         healthText.text = "" + Mathf.Round(playerController.currentHealth * 2);
+        wave.text = "Wave: " + playerController.laps;
         buffs.text = buff;
         if (Input.GetButtonDown("Fire1"))
         {
