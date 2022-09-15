@@ -1394,6 +1394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthText: {fileID: 5154265059766219323}
   buffs: {fileID: 2031816373}
+  wave: {fileID: 4644232773332810682}
   one: {fileID: 9191729557910522541}
   two: {fileID: 2469059639017216866}
   three: {fileID: 7382212163727813650}
