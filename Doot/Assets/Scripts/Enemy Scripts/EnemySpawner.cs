@@ -14,6 +14,9 @@ public class EnemySpawner : MonoBehaviour
     public int maxEnemies;
     public int maxEnemiesX;
 
+    public float test;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,15 +30,22 @@ public class EnemySpawner : MonoBehaviour
     {
         spawncount = 2 * playerController.laps;
         maxEnemies = 4 * playerController.laps;
-        if (enemyspawned <= spawncount && maxEnemiesX >= 1)
+        float x = DistanceCheck();
+        if (enemyspawned <= spawncount)
         {
-            DistanceCheck();
+            SpawnEnemies(x);
         }           
     }
 
-    void DistanceCheck()
+    float DistanceCheck()
     {
         float distance = Vector3.Distance(player.position, transform.position);
+        test = distance;
+        return distance;
+    }
+
+    void SpawnEnemies(float distance)
+    {
         if (distance < playerThreshold)
         {
             for (int i = 0; i < spawncount; i++)
@@ -47,7 +57,12 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            maxEnemiesX = maxEnemies;
+            if (maxEnemiesX <= 0)
+            {
+                maxEnemiesX = maxEnemies;
+            }
+            
+
         }
     }
 }
