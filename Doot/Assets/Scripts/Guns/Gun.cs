@@ -20,8 +20,18 @@ public class Gun : MonoBehaviour
         }
     }
 
-   public virtual void ActivateEffect(Collider other)
+   public virtual void ActivateEnterEffect(Collider other)
    {
 
    }
+
+    public virtual void ActivateExitEffect(Collider other)
+    {
+
+    }
+
+    public virtual void ActivateStayEffect(Collider other)
+    {
+
+    }
 }

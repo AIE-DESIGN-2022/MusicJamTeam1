@@ -77,11 +77,13 @@ public class DootGun : Gun
         lastFire = Time.time;
     }
 
-    public override void ActivateEffect(Collider other)
+    public override void ActivateEnterEffect(Collider other)
     {
         if (other.GetComponent<Enemy>() != null && other.GetComponent<Rigidbody>() != null)
         {
             other.GetComponent<Rigidbody>().AddForce(this.transform.forward * dootForce);
+
+            other.GetComponent<Enemy>().Doot();
         }
     }
 }

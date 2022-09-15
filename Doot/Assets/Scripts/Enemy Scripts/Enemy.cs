@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     public float suspiciousThreshold, hostileThreshold, attackThreshold;
     Collider col;
     EnemySpawner spawnerScript;
-    GameObject healthDrop;
+    public GameObject healthDrop;
 
     #region Patrol
     NavMeshAgent agent;
@@ -240,18 +240,20 @@ public class Enemy : MonoBehaviour
         
         for(int i = 0; i < Random.Range(1,3); i++)
         {
-            GameObject drop = Instantiate(healthDrop);
+            GameObject drop = Instantiate(healthDrop, transform.position, transform.rotation);
+            Debug.Log("Spawned Health");
             PickUp pickUp = drop.GetComponent<PickUp>();
+            pickUp.healthPack = true;
             pickUp.healthPackAmount = hp;
         }
     }
 
-    public virtual void Doot(Vector3 colliderPoint, float dootForce)
+    public virtual void Doot()
     {
         agent.enabled = false;
         dooted = true;
         Debug.Log(name + " has been Dooted.");
-        rb.AddForce(colliderPoint * dootForce);
+        //rb.AddForce(colliderPoint * dootForce); Removing the force as this functionality is better for the guns
         StartCoroutine(DootRecover());
     }
     
