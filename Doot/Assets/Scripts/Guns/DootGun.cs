@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DootGun : MonoBehaviour
+public class DootGun : Gun
 {
     public LayerMask mask = -1;
     public Vector3 p1;
@@ -10,7 +10,6 @@ public class DootGun : MonoBehaviour
     Animator animator;
     AudioSource audioSource;
     BuffManager buffManager;
-    private GameObject trumpet;
     public float range;
     private float lastFire;
     public float rateOfFire;
@@ -21,11 +20,11 @@ public class DootGun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        trumpet = GameObject.FindGameObjectWithTag("Trumpet");
+        
         charCtrl = GetComponentInParent<CharacterController>();
         playController = GetComponentInParent<PlayerController>();
-        animator = trumpet.GetComponent<Animator>();
-        audioSource = trumpet.GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         buffManager = FindObjectOfType<BuffManager>();
         lastFire = Time.time;
         layerMask = LayerMask.GetMask("Dootable");
@@ -57,5 +56,11 @@ public class DootGun : MonoBehaviour
             }
         }
         lastFire = Time.time;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
+
     }
 }
