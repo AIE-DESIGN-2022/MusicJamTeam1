@@ -44,14 +44,18 @@ public class PhootDootGun : Gun
     {
         m_HoldingDownMouseButton = Input.GetButton("Fire1");
 
-        if (m_HoldingDownMouseButton && lastFire + rateOfFire < Time.time && playController.alive == Alive.alive)
+        if (m_HoldingDownMouseButton && lastFire + rateOfFire < Time.time /*&& playController.alive == Alive.alive*/)
         {
             PhootDoot();
         }
         else if (!m_HoldingDownMouseButton)
         {
             m_ActivatedDoot = false;
-            Range.SetActive(false);
+
+            if (Range)
+            {
+                Range.SetActive(false);
+            }
 
             foreach(Collider collider in m_Targetcolliders)
             {
@@ -81,7 +85,11 @@ public class PhootDootGun : Gun
         //    }
         //}
 
-        Range.SetActive(true);
+        if (Range)
+        {
+            Range.SetActive(true);
+        }
+        
         m_ActivatedDoot = true;
 
         lastFire = Time.time;
