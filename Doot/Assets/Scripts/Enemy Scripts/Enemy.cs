@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     Rigidbody rb;
     public float suspiciousThreshold, hostileThreshold, attackThreshold;
     Collider col;
+    EnemySpawner spawnerScript;
 
     #region Patrol
     NavMeshAgent agent;
@@ -41,6 +42,7 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
         spawner = GetComponentInParent<Transform>();
+        spawnerScript = GetComponentInParent<EnemySpawner>();
         RouteSpawn();
 
     }
@@ -209,6 +211,7 @@ public class Enemy : MonoBehaviour
         Debug.Log(name + " is dead.");
         state = AIState.dead;
         dead = true;
+        spawnerScript.enemyspawned--;
     }
 
     IEnumerator Despawn()
