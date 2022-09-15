@@ -14,6 +14,10 @@ public class BuffManager : MonoBehaviour
     public float increasedWalkingSpeed;
     public float increasedRunningSpeed;
     public float increasedJumpSpeed;
+    public bool fireRateBoosted;
+    public bool speedBoosted;
+    public bool jumpBoosted;
+
     void Start()
     {
         dootGun = FindObjectOfType<DootGun>();
@@ -29,25 +33,31 @@ public class BuffManager : MonoBehaviour
     }
     public IEnumerator RateOfFire(float duration, GameObject pickUp)
     {
+        fireRateBoosted = true;
         dootGun.rateOfFire = increasedFireRate;
         yield return new WaitForSeconds(duration);
         dootGun.rateOfFire = baseFireRate;
+        fireRateBoosted = false;
         Destroy(pickUp);
     }
     public IEnumerator Speed(float duration, GameObject pickUp)
     {
+        speedBoosted = true;
         playerController.runningSpeed = increasedRunningSpeed;
         playerController.walkingSpeed = increasedWalkingSpeed;
         yield return new WaitForSeconds(duration);
         playerController.runningSpeed = baseRunningSpeed;
         playerController.walkingSpeed = baseWalkingSpeed;
+        speedBoosted = false;
         Destroy(pickUp);
     }
     public IEnumerator SuperJump(float duration, GameObject pickUp)
     {
+        jumpBoosted = true;
         playerController.jumpSpeed = increasedJumpSpeed;
         yield return new WaitForSeconds(duration);
         playerController.jumpSpeed = baseJumpSpeed;
+        jumpBoosted = false;
         Destroy(pickUp);
     }
     public void Heal(GameObject pickUp)
