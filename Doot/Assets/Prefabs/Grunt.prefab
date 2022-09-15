@@ -279,6 +279,7 @@ MonoBehaviour:
   suspiciousThreshold: 15
   hostileThreshold: 12
   attackThreshold: 10
+  healthDrop: {fileID: 2091668106197855438, guid: fc93a2e30ab9f3b45acfaf2000205b2c, type: 3}
   routes:
   - {x: 5.3046234e-11, y: 5.23e-43, z: 2.6562855e+20}
   - {x: 0.00000016598354, y: 4.101253e-39, z: 5.21e-43}
@@ -287,6 +288,7 @@ MonoBehaviour:
   routeThreshold: 3
   spawner: {fileID: 0}
   state: 0
+  meleeKilled: 0
   bullet: {fileID: 8398280803437982103, guid: 9fb298688431c534cb2517e13941cf66, type: 3}
   bulletSpawn: {fileID: 3997476191084652772}
 --- !u!195 &3997476192443273814

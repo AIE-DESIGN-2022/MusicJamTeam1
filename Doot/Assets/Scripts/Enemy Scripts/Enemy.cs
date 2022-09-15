@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     public float suspiciousThreshold, hostileThreshold, attackThreshold;
     Collider col;
     EnemySpawner spawnerScript;
-    GameObject healthDrop;
+    public GameObject healthDrop;
 
     #region Patrol
     NavMeshAgent agent;
@@ -240,8 +240,10 @@ public class Enemy : MonoBehaviour
         
         for(int i = 0; i < Random.Range(1,3); i++)
         {
-            GameObject drop = Instantiate(healthDrop);
+            GameObject drop = Instantiate(healthDrop, transform.position, transform.rotation);
+            Debug.Log("Spawned Health");
             PickUp pickUp = drop.GetComponent<PickUp>();
+            pickUp.healthPack = true;
             pickUp.healthPackAmount = hp;
         }
     }
