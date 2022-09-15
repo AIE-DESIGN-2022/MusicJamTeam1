@@ -50,9 +50,9 @@ public class BuffManager : MonoBehaviour
         playerController.jumpSpeed = baseJumpSpeed;
         Destroy(pickUp);
     }
-    public void Heal(GameObject pickUp)
+    public void Heal(float healthAmount, GameObject pickUp)
     {
-        playerController.currentHealth += 25;
+        playerController.currentHealth += healthAmount;
         if (playerController.currentHealth > playerController.maxHealth)
         {
             playerController.currentHealth = playerController.maxHealth;
