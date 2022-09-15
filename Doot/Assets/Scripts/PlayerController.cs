@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
+    public GameObject melee;
+    Rigidbody meleeRigidbody;
 
     [HideInInspector]
     public bool canMove = true;
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
         characterController = GetComponent<CharacterController>();
         playerCamera = Camera.main;
+        meleeRigidbody = melee.GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -49,6 +52,12 @@ public class PlayerController : MonoBehaviour
             respawnButton.SetActive(true);
             CursorUnlock();
         }
+
+        if(Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            Melee();
+        }
+            
     }
 
     void CursorLock()
@@ -121,5 +130,19 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
         Health();
         respawnButton.SetActive(false);
+    }
+
+    void Melee()
+    {
+        //Play animation
+
+        melee.SetActive(true);
+        StartCoroutine(MeleeDrop());
+    }
+
+    IEnumerator MeleeDrop()
+    {
+        yield return new WaitForSeconds(0.5f);
+        melee.SetActive(false);
     }
 }
