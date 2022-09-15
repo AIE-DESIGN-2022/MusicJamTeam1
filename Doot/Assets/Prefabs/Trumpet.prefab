@@ -1175,7 +1175,7 @@ MonoBehaviour:
   p1: {x: 0, y: 0, z: 0}
   range: 20
   rateOfFire: 1
-  dootForce: 1000
+  dootForce: 2500
 --- !u!1 &6173168305729570223
 GameObject:
   m_ObjectHideFlags: 0
