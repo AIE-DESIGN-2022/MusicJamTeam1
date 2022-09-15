@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     public float suspiciousThreshold, hostileThreshold, attackThreshold;
     Collider col;
     EnemySpawner spawnerScript;
+    GameObject healthDrop;
 
     #region Patrol
     NavMeshAgent agent;
@@ -30,6 +31,8 @@ public class Enemy : MonoBehaviour
     bool frenzy = false;
     bool dead = false;
     bool dooted = false;
+    [HideInInspector]
+    public bool meleeKilled = false;
     #endregion
 
     // Start is called before the first frame update
@@ -83,6 +86,7 @@ public class Enemy : MonoBehaviour
         
         if(collision.collider.name == "Melee")
             currentHealth -= 20;
+            meleeKilled = true;
         
     }
 
@@ -227,7 +231,18 @@ public class Enemy : MonoBehaviour
 
     void DropHealth()
     {
-        Debug.Log(name + " dropped Health");
+        float hp = 0;
+        if (meleeKilled)
+            hp = 25;
+        else
+            hp = 10;
+        
+        for(int i = 0; i < Random.Range(1,3); i++)
+        {
+            GameObject drop = Instantiate(healthDrop);
+            PickUp pickUp = drop.GetComponent<PickUp>();
+            pickUp.healthPackAmount = hp;
+        }
     }
 
     public virtual void Doot(Vector3 colliderPoint, float dootForce)
