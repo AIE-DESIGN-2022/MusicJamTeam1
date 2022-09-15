@@ -2,18 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//[RequireComponent(typeof(Collider))]
 public class Gun : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    protected GameObject Range;
+
+    protected virtual void Start()
     {
-        
+        foreach (Transform t in TransformNavigation.GetAllChildren(transform, false))
+        {
+            if (t.GetComponent<MeshCollider>() != null)
+            {
+                if (t.GetComponent<MeshCollider>().gameObject != null && t.GetComponent<MeshCollider>().sharedMesh.name == "pCone1")
+                {
+                    Range = t.GetComponent<MeshCollider>().gameObject;
+                }
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   public virtual void ActivateEffect(Collider other)
+   {
+
+   }
 }

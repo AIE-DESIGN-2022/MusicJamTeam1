@@ -17,10 +17,14 @@ public class DootGun : Gun
     private int layerMask;
 
     PlayerController playController;
+
+    bool m_ActivatedDoot = false;
+    float Timer = 1f;
+
     // Start is called before the first frame update
-    void Start()
+    override protected void Start()
     {
-        
+        base.Start();
         charCtrl = GetComponentInParent<CharacterController>();
         playController = GetComponentInParent<PlayerController>();
         animator = GetComponent<Animator>();
@@ -37,30 +41,47 @@ public class DootGun : Gun
         {
             Doot();
         }
+
+        if (m_ActivatedDoot == true)
+        {
+            Timer -= Time.deltaTime;
+            if (Timer <= 0)
+            {
+                m_ActivatedDoot = false;
+                Range.SetActive(false);
+                Timer = 1f;
+            }
+        }
     }
 
     void Doot()
     {
         animator.SetTrigger("Doot");
         audioSource.Play();
-        RaycastHit hit;
+        //RaycastHit hit;
 
-        Vector3 p1 = transform.position + charCtrl.center;
-        if (Physics.SphereCast(p1, charCtrl.height / 2, transform.forward, out hit, range, layerMask))
-        {
-            if (hit.collider.tag == "Enemy")
-            {
-                Debug.Log(hit.collider.name);
-                Grunt g = hit.collider.GetComponentInParent<Grunt>();
-                g.Doot(this.transform.forward, dootForce);
-            }
-        }
+        //Vector3 p1 = transform.position + charCtrl.center;
+        //if (Physics.SphereCast(p1, charCtrl.height / 2, transform.forward, out hit, range, layerMask))
+        //{
+        //    if (hit.collider.tag == "Enemy")
+        //    {
+        //        Debug.Log(hit.collider.name);
+        //        Grunt g = hit.collider.GetComponentInParent<Grunt>();
+        //        g.Doot(this.transform.forward, dootForce);
+        //    }
+        //}
+
+        Range.SetActive(true);
+        m_ActivatedDoot = true;
+
         lastFire = Time.time;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public override void ActivateEffect(Collider other)
     {
-        
-
+        if (other.GetComponent<Enemy>() != null && other.GetComponent<Rigidbody>() != null)
+        {
+            other.GetComponent<Rigidbody>().AddForce(this.transform.forward * dootForce);
+        }
     }
 }
