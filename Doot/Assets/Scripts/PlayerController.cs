@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
     public GameObject respawnButton;
     public int laps;
 
+    public int grenadeCount;
+    public GameObject grenade;
+    public Transform grenadeSpawn;
     
     public Alive alive;
 
@@ -59,6 +62,10 @@ public class PlayerController : MonoBehaviour
             Melee();
         }
             
+        if(Input.GetKeyDown(KeyCode.Q) && grenadeCount >= 1)
+        {
+            Grenade();
+        }
     }
 
     void CursorLock()
@@ -140,10 +147,16 @@ public class PlayerController : MonoBehaviour
         melee.SetActive(true);
         StartCoroutine(MeleeDrop());
     }
-
     IEnumerator MeleeDrop()
     {
         yield return new WaitForSeconds(0.5f);
         melee.SetActive(false);
+    }
+
+    void Grenade()
+    {
+        grenadeCount--;
+        GameObject g = Instantiate(grenade, grenadeSpawn.position, transform.rotation);
+        g.transform.forward = transform.forward;
     }
 }
