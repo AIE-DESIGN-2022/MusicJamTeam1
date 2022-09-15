@@ -33,6 +33,7 @@ public class Grenade : MonoBehaviour
 
     void GrenadeEffect(Enemy enemy)
     {
-        Debug.Log(enemy.name + " was hit by grenade.");
+        if(enemy != null)
+            Debug.Log(enemy.name + " was hit by grenade.");
     }
 }
