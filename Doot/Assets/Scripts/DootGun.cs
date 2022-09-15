@@ -15,6 +15,7 @@ public class DootGun : MonoBehaviour
     private float lastFire;
     public float rateOfFire;
     public float dootForce;
+    private int layerMask;
 
     PlayerController playController;
     // Start is called before the first frame update
@@ -27,6 +28,7 @@ public class DootGun : MonoBehaviour
         audioSource = trumpet.GetComponent<AudioSource>();
         buffManager = FindObjectOfType<BuffManager>();
         lastFire = Time.time;
+        layerMask = LayerMask.GetMask("Dootable");
     }
 
     // Update is called once per frame
@@ -45,7 +47,7 @@ public class DootGun : MonoBehaviour
         RaycastHit hit;
 
         Vector3 p1 = transform.position + charCtrl.center;
-        if (Physics.SphereCast(p1, charCtrl.height / 2, transform.forward, out hit, range))
+        if (Physics.SphereCast(p1, charCtrl.height / 2, transform.forward, out hit, range, layerMask))
         {
             if (hit.collider.tag == "Enemy")
             {
