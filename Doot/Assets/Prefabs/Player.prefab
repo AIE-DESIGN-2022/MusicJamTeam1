@@ -517,6 +517,10 @@ MonoBehaviour:
   maxHealth: 50
   currentHealth: 0
   respawnButton: {fileID: 7663971656086080097}
+  laps: 0
+  grenadeCount: 0
+  grenade: {fileID: 0}
+  grenadeSpawn: {fileID: 0}
   alive: 0
 --- !u!143 &5895177126331530201
 CharacterController:
@@ -564,10 +568,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48db9f7ea77f3cb4bb9d6a6f26c77d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_WeaponParent: {fileID: 5895177125393025690}
   m_WeaponStorage: {fileID: 1876103619284481017}
   m_PotentialGuns:
   - {fileID: 5049296417300958273, guid: 5397bbdfc396d46478bf375553111fd4, type: 3}
+  - {fileID: 1277910003280457197, guid: 17808ca231ad7bf45acfaae361822bad, type: 3}
 --- !u!1 &6477615587592066244
 GameObject:
   m_ObjectHideFlags: 0

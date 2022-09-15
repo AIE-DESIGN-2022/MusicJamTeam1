@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3997476191218068472, guid: 82383f0ffd3741a4187024b144a21ce6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3997476192443273811, guid: 82383f0ffd3741a4187024b144a21ce6, type: 3}
       propertyPath: m_Name
       value: Grunt
@@ -203,7 +207,8 @@ PrefabInstance:
       propertyPath: routes.Array.data[1]
       value: 
       objectReference: {fileID: 581695292}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3997476191218068472, guid: 82383f0ffd3741a4187024b144a21ce6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 82383f0ffd3741a4187024b144a21ce6, type: 3}
 --- !u!1 &407152407
 GameObject:
@@ -237,6 +242,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a68674b110f53489f8d4d1eb75fda6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  p1: {x: 0, y: 0, z: 0}
+  range: 0
+  rateOfFire: 0
+  dootForce: 0
 --- !u!136 &407152409
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -363,14 +375,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1851517830872205604, guid: 5d4f009a171f8204dae7db4fe9c32e41, type: 3}
-      propertyPath: m_PotentialGuns.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1851517830872205604, guid: 5d4f009a171f8204dae7db4fe9c32e41, type: 3}
-      propertyPath: m_PotentialGuns.Array.data[1]
-      value: 
-      objectReference: {fileID: 407152408}
     - target: {fileID: 5895177126331529766, guid: 5d4f009a171f8204dae7db4fe9c32e41, type: 3}
       propertyPath: melee
       value: 
@@ -461,7 +465,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15676
+  m_Name: pb_Mesh16138
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
