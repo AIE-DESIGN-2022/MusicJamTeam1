@@ -22,7 +22,23 @@ public class GunRadius : MonoBehaviour
     {
         if (m_OwningGun != null)
         {
-            m_OwningGun.ActivateEffect(other);
+            m_OwningGun.ActivateEnterEffect(other);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (m_OwningGun != null)
+        {
+            m_OwningGun.ActivateStayEffect(other);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (m_OwningGun != null)
+        {
+            m_OwningGun.ActivateExitEffect(other);
         }
     }
 }

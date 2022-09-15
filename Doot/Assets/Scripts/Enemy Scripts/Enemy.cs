@@ -246,12 +246,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public virtual void Doot(Vector3 colliderPoint, float dootForce)
+    public virtual void Doot()
     {
         agent.enabled = false;
         dooted = true;
         Debug.Log(name + " has been Dooted.");
-        rb.AddForce(colliderPoint * dootForce);
+        //rb.AddForce(colliderPoint * dootForce); Removing the force as this functionality is better for the guns
         StartCoroutine(DootRecover());
     }
     
