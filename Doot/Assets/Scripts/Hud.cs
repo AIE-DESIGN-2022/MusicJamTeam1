@@ -7,9 +7,7 @@ public class Hud : MonoBehaviour
 {
     public Text healthText;
     public Text buffs;
-    private string speed;
-    private string jump;
-    private string rate;
+    private string buff;
     public PlayerController playerController;
     public BuffManager buffManager;
     // Start is called before the first frame update
@@ -17,26 +15,30 @@ public class Hud : MonoBehaviour
     {
         playerController = FindObjectOfType<PlayerController>();
         buffManager = FindObjectOfType<BuffManager>();
-        speed = "Speed Boosted";
-        jump = "Jump Boosted";
-        rate = "Rate of Fire";
+        buff = ("Jump Boosted \nSpeed Boosted \nRate of Fire");
+        CheckBuffs();
     }
 
     // Update is called once per frame
     void Update()
     {
         healthText.text = "" + playerController.currentHealth * 2;
-        CheckBuffs();
+        buffs.text = buff;
     }
     public void CheckBuffs()
     {
-        if (buffManager.speedBoosted == true)
+        buff = ("Jump Boosted \nSpeed Boosted \nRate of Fire");
+        if (buffManager.jumpBoosted == false)
         {
-            buffs.text = string.Concat(speed);
+            buff = buff.Replace("Jump Boosted \n", "");
         }
         if (buffManager.speedBoosted == false)
         {
-            buffs.text = speed.Replace(speed, "");
+            buff = buff.Replace("Speed Boosted \n", "");
+        }
+        if (buffManager.fireRateBoosted == false)
+        {
+            buff = buff.Replace("Rate of Fire", "");
         }
     }
 }
