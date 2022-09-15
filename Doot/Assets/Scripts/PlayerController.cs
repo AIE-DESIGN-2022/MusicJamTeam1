@@ -18,8 +18,7 @@ public class PlayerController : MonoBehaviour
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
-    public GameObject melee;
-    Rigidbody meleeRigidbody;
+    
 
     [HideInInspector]
     public bool canMove = true;
@@ -32,7 +31,11 @@ public class PlayerController : MonoBehaviour
     public int grenadeCount;
     public GameObject grenade;
     public Transform grenadeSpawn;
-    
+
+    public GameObject melee;
+    Rigidbody meleeRigidbody;
+    Animator animator;
+
     public Alive alive;
 
     void Start()
@@ -41,6 +44,7 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         playerCamera = Camera.main;
         meleeRigidbody = melee.GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -57,7 +61,7 @@ public class PlayerController : MonoBehaviour
             CursorUnlock();
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftControl))
+        if(Input.GetKeyDown(KeyCode.LeftControl) && alive != Alive.dead)
         {
             Melee();
         }
@@ -143,14 +147,17 @@ public class PlayerController : MonoBehaviour
     void Melee()
     {
         //Play animation
+        
 
         melee.SetActive(true);
+        animator.SetBool("MeleeAttack", true);
         StartCoroutine(MeleeDrop());
     }
     IEnumerator MeleeDrop()
     {
         yield return new WaitForSeconds(0.5f);
-        melee.SetActive(false);
+        
+        animator.SetBool("MeleeAttack", false);
     }
 
     void Grenade()
