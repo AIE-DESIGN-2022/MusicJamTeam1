@@ -52,6 +52,6 @@ public class Projectile : MonoBehaviour
     IEnumerator Despawn()
     {
         yield return new WaitForSeconds(2);
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 }

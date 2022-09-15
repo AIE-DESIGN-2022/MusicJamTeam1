@@ -227,7 +227,7 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         DropHealth();
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 
     void DropHealth()
