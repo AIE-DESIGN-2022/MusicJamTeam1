@@ -220,6 +220,7 @@ public class Enemy : MonoBehaviour
         state = AIState.dead;
         dead = true;
         spawnerScript.enemyspawned--;
+        StartCoroutine(Despawn());
     }
 
     IEnumerator Despawn()
