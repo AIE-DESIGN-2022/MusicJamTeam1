@@ -47,13 +47,16 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    private void Awake()
+    {
+        CursorLock();
+    }
+
     void Update()
     {
         if(alive == Alive.alive)
         {
             PlayerMovement();
-            Health();
-            CursorLock();
         }
         else
         {
@@ -61,7 +64,7 @@ public class PlayerController : MonoBehaviour
             CursorUnlock();
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftControl) && alive != Alive.dead)
+        if(Input.GetMouseButtonDown(1) && alive != Alive.dead)
         {
             Melee();
         }
@@ -124,6 +127,7 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        Health();
     }
 
     void Health()
@@ -137,18 +141,16 @@ public class PlayerController : MonoBehaviour
             alive = Alive.alive;
     }
 
-    public void Respawn()
+    public void Respawn()   //Called by button
     {
         currentHealth = maxHealth;
         Health();
         respawnButton.SetActive(false);
+        CursorLock();
     }
 
     void Melee()
     {
-        //Play animation
-        
-
         melee.SetActive(true);
         animator.SetBool("MeleeAttack", true);
         StartCoroutine(MeleeDrop());
