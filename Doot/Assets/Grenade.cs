@@ -34,6 +34,15 @@ public class Grenade : MonoBehaviour
     void GrenadeEffect(Enemy enemy)
     {
         if(enemy != null)
+        {
+            if (enemy.GetComponent<Rigidbody>() != null)
+            {
+                enemy.Doot();
+                enemy.GetComponent<Rigidbody>().AddExplosionForce(2000.0f, transform.position, 20.0f);
+            }
+
             Debug.Log(enemy.name + " was hit by grenade.");
+        }
+            
     }
 }

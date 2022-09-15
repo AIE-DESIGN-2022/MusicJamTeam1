@@ -81,9 +81,8 @@ public class DootGun : Gun
     {
         if (other.GetComponent<Enemy>() != null && other.GetComponent<Rigidbody>() != null)
         {
-            other.GetComponent<Rigidbody>().AddForce(this.transform.forward * dootForce);
-
             other.GetComponent<Enemy>().Doot();
+            other.GetComponent<Rigidbody>().AddForce(this.transform.forward * dootForce);
         }
     }
 }
