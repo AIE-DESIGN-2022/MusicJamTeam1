@@ -636,6 +636,7 @@ MonoBehaviour:
   m_WeaponStorage: {fileID: 1876103619284481017}
   m_PotentialGuns:
   - {fileID: 5049296417300958273, guid: 5397bbdfc396d46478bf375553111fd4, type: 3}
+  - {fileID: 1277910003280457197, guid: 17808ca231ad7bf45acfaae361822bad, type: 3}
 --- !u!95 &373581050
 Animator:
   serializedVersion: 3
