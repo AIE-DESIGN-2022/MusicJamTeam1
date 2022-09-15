@@ -581,7 +581,7 @@ MonoBehaviour:
   maxHealth: 50
   currentHealth: 0
   respawnButton: {fileID: 7663971656086080097}
-  laps: 0
+  laps: 1
   grenadeCount: 5
   grenade: {fileID: 7584072201609112649, guid: b9615ffa74004b94ab7c01cb11ea5155, type: 3}
   grenadeSpawn: {fileID: 931048391}
