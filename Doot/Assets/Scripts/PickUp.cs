@@ -7,6 +7,7 @@ public class PickUp : MonoBehaviour
     public bool rateOfFireBuff;
     public bool speedBuff;
     public bool superJump;
+    public bool healthPack;
     public float duration;
     BuffManager buffManager;
     private bool check;
@@ -42,6 +43,10 @@ public class PickUp : MonoBehaviour
             if (superJump)
             {
                 StartCoroutine(buffManager.SuperJump(duration, this.gameObject));
+            }
+            if (healthPack)
+            {
+                buffManager.Heal(this.gameObject);
             }
         }
     }
