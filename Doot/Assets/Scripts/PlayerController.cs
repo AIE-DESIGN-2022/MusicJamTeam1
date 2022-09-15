@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     public float maxHealth, currentHealth;
+    public GameObject respawnButton;
 
     
     public Alive alive;
@@ -33,10 +34,6 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
         characterController = GetComponent<CharacterController>();
         playerCamera = Camera.main;
-        
-        // Lock cursor
-        if(alive == Alive.alive)
-            CursorLock();
     }
 
     void Update()
@@ -45,6 +42,12 @@ public class PlayerController : MonoBehaviour
         {
             PlayerMovement();
             Health();
+            CursorLock();
+        }
+        else
+        {
+            respawnButton.SetActive(true);
+            CursorUnlock();
         }
     }
 
@@ -52,6 +55,12 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    void CursorUnlock()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     void PlayerMovement()
@@ -68,21 +77,15 @@ public class PlayerController : MonoBehaviour
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
         if (Input.GetKeyDown(KeyCode.Space) && canMove && characterController.isGrounded)
-        {
             moveDirection.y = jumpSpeed;
-        }
         else
-        {
             moveDirection.y = movementDirectionY;
-        }
 
         // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
         // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
         // as an acceleration (ms^-2)
         if (!characterController.isGrounded)
-        {
             moveDirection.y -= gravity * Time.deltaTime;
-        }
 
         // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
@@ -104,10 +107,19 @@ public class PlayerController : MonoBehaviour
 
     void Health()
     {
-        if(currentHealth < 0)
+        if (currentHealth <= 0)
         {
             alive = Alive.dead;
             Debug.Log("died");
         }
+        else
+            alive = Alive.alive;
+    }
+
+    public void Respawn()
+    {
+        currentHealth = maxHealth;
+        Health();
+        respawnButton.SetActive(false);
     }
 }
