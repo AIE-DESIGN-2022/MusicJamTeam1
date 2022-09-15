@@ -9,6 +9,7 @@ public class PickUp : MonoBehaviour
     public bool superJump;
     public bool healthPack;
     public float duration;
+    public float healthPackAmount;
     BuffManager buffManager;
     private bool check;
     private GameObject child;
@@ -46,7 +47,7 @@ public class PickUp : MonoBehaviour
             }
             if (healthPack)
             {
-                buffManager.Heal(this.gameObject);
+                buffManager.Heal(healthPackAmount, this.gameObject);
             }
         }
     }
