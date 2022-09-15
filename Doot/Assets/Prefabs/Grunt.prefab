@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3997476191084652772}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BulletSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 3997476191218068474}
   - component: {fileID: 3997476191218068473}
   - component: {fileID: 3997476191218068472}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Enemy_FX
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 3997476192060311891}
   - component: {fileID: 3997476192060311890}
   - component: {fileID: 3997476192060311889}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,9 +235,9 @@ GameObject:
   - component: {fileID: 3997476192443273814}
   - component: {fileID: 3997476192443273816}
   - component: {fileID: 3997476192443273815}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Grunt
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -280,13 +280,12 @@ MonoBehaviour:
   hostileThreshold: 12
   attackThreshold: 10
   routes:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {x: 5.3046234e-11, y: 5.23e-43, z: 2.6562855e+20}
+  - {x: 0.00000016598354, y: 4.101253e-39, z: 5.21e-43}
   currentRoute: 0
   nextRoute: 0
   routeThreshold: 3
+  spawner: {fileID: 0}
   state: 0
   bullet: {fileID: 8398280803437982103, guid: 9fb298688431c534cb2517e13941cf66, type: 3}
   bulletSpawn: {fileID: 3997476191084652772}
