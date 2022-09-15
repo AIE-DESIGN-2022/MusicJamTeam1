@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Trumpet
+  - Lava
   layers:
   - Default
   - TransparentFX
