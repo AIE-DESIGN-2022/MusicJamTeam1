@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public int laps;
     public int spawncount;
     public GameObject enemy;
     public Transform player;
     public float playerThreshold;
+    PlayerController playerController;
     [HideInInspector]
     public int enemyspawned;
     public int maxEnemies;
@@ -17,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerController = FindObjectOfType<PlayerController>();
         maxEnemies = 4;
         maxEnemiesX = maxEnemies;
     }
@@ -24,8 +25,8 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        spawncount = 2 * laps;
-        maxEnemies = 4 * laps;
+        spawncount = 2 * playerController.laps;
+        maxEnemies = 4 * playerController.laps;
         if (enemyspawned <= spawncount && maxEnemiesX >= 1)
         {
             DistanceCheck();

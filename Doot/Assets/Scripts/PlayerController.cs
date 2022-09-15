@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     public float maxHealth, currentHealth;
     public GameObject respawnButton;
+    public int laps;
 
     
     public Alive alive;
