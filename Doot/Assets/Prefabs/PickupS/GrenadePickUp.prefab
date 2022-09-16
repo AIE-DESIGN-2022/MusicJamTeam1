@@ -62,7 +62,7 @@ MonoBehaviour:
   speedBuff: 0
   superJump: 0
   healthPack: 0
-  grenadePickup: 0
+  grenadePickup: 1
   duration: 5
   healthPackAmount: 0
 --- !u!1 &8657943889804672230
