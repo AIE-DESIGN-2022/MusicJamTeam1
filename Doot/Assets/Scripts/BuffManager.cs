@@ -24,7 +24,7 @@ public class BuffManager : MonoBehaviour
         dootGun = FindObjectOfType<DootGun>();
         playerController = FindObjectOfType<PlayerController>();
         hud = FindObjectOfType<Hud>();
-        dootGun.rateOfFire = baseFireRate;
+        //dootGun.rateOfFire = baseFireRate;
         playerController.walkingSpeed = baseWalkingSpeed;
         playerController.runningSpeed = baseRunningSpeed;
     }
