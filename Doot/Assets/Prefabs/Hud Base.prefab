@@ -1511,6 +1511,7 @@ MonoBehaviour:
   healthText: {fileID: 5154265059766219323}
   buffs: {fileID: 2031816373}
   wave: {fileID: 4644232773332810682}
+  score: {fileID: 2054206856348939216}
   grenades: {fileID: 4931716029060813483}
   shieldText: {fileID: 1699155338017390654}
   one: {fileID: 9191729557910522541}
