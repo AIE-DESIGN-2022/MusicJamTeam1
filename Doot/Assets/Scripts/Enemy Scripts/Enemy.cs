@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     public float attackSpeed, attackDelay;
     Transform player;
     Transform focus;
-    Rigidbody rb;
+    public Rigidbody rb;
     public float suspiciousThreshold, hostileThreshold, attackThreshold;
     Collider col;
     EnemySpawner spawnerScript;
@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     public GameObject healthDrop;
 
     #region Patrol
-    NavMeshAgent agent;
+    protected NavMeshAgent agent;
     public List<Vector3> routes;
     public int currentRoute, nextRoute;
     public float routeThreshold;
@@ -215,7 +215,7 @@ public class Enemy : MonoBehaviour
         state = AIState.frenzy;
     }
 
-    void FrenzyUpdate()
+    protected virtual void FrenzyUpdate()
     {
         attackSpeed *= 1.5f;
         agent.speed *= 1.5f;
@@ -225,9 +225,11 @@ public class Enemy : MonoBehaviour
 
         if (Distance(player.position) <= suspiciousThreshold)   //if player gets too close, follow him
             TriggerSearching(player);
+
+        
     }
 
-    public virtual void TriggerDead()
+    protected virtual void TriggerDead()
     {
         Debug.Log(name + " is dead.");
         state = AIState.dead;
