@@ -14,33 +14,42 @@ public class PlayerController : MonoBehaviour
     Camera playerCamera;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
-
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
-    
-
     [HideInInspector]
     public bool canMove = true;
     #endregion
 
+    #region Health
     public float maxHealth, currentHealth;
+    public float maxShield, currentShield;
+    public float shieldRechargeTime, shieldRechargeRate;
     public GameObject respawnButton;
     public int laps;
+    bool takingDamage = false;
+    #endregion
 
+    #region Grenades
     public int grenadeCount;
     public GameObject grenade;
     public Transform grenadeSpawn;
+    bool grenadeInCooldown = false;
+    public float grenadeCooldownTime;
+    #endregion
 
+    #region Melee
     public GameObject melee;
     Rigidbody meleeRigidbody;
     Animator animator;
+    #endregion
 
     public Alive alive;
 
     void Start()
     {
         currentHealth = maxHealth;
+        currentShield = maxShield;
         characterController = GetComponent<CharacterController>();
         playerCamera = Camera.main;
         meleeRigidbody = melee.GetComponent<Rigidbody>();
@@ -57,6 +66,11 @@ public class PlayerController : MonoBehaviour
         if(alive == Alive.alive)
         {
             PlayerMovement();
+
+            if(currentShield != maxShield && !takingDamage)
+            {
+                ShieldRecharge();
+            }
         }
         else
         {
@@ -126,10 +140,32 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
+        takingDamage = true;
+
+        if(currentShield > 0)
+        {
+            currentShield -= damage;
+        }
+        else
+        {
+            currentHealth -= damage;
+        }
+
+        StartCoroutine(ShieldRechargeTimer(shieldRechargeTime));
+
         Health();
     }
 
+    IEnumerator ShieldRechargeTimer(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        takingDamage = false;
+    }
+
+    void ShieldRecharge()
+    {
+        currentShield += shieldRechargeRate * Time.deltaTime;
+    }
     void Health()
     {
         if (currentHealth <= 0)
@@ -164,8 +200,19 @@ public class PlayerController : MonoBehaviour
 
     void Grenade()
     {
-        grenadeCount--;
-        GameObject g = Instantiate(grenade, grenadeSpawn.position, transform.rotation);
-        g.transform.forward = transform.forward;
+        if (!grenadeInCooldown)
+        {
+            grenadeInCooldown = true;
+            grenadeCount--;
+            GameObject g = Instantiate(grenade, grenadeSpawn.position, transform.rotation);
+            g.transform.forward = transform.forward;
+            StartCoroutine(GrenadeCooldown(grenadeCooldownTime));
+        }
+    }
+
+    IEnumerator GrenadeCooldown (float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        grenadeInCooldown = false;
     }
 }
