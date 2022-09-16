@@ -8,6 +8,7 @@ public class PickUp : MonoBehaviour
     public bool speedBuff;
     public bool superJump;
     public bool healthPack;
+    public bool grenadePickup;
     public float duration;
     public float healthPackAmount;
     BuffManager buffManager;
@@ -48,6 +49,10 @@ public class PickUp : MonoBehaviour
             if (healthPack)
             {
                 buffManager.Heal(healthPackAmount, this.gameObject);
+            }
+            if (grenadePickup)
+            {
+                buffManager.Grenade(this.gameObject);
             }
         }
     }
