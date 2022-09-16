@@ -2501,7 +2501,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2620,9 +2620,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   p1: {x: 0, y: 0, z: 0}
-  range: 20
-  rateOfFire: 3
-  dootForce: 10
+  range: 30
+  rateOfFire: 1.5
+  dootForce: 50
   charge: {fileID: 8300000, guid: 6cf938ad3aeeb324cafbbf2951763770, type: 3}
   doot: {fileID: 8300000, guid: 3ef606572198dc84a91e284b4d479e58, type: 3}
   m_StopRange: 2
@@ -2805,19 +2805,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3920253129339601811, guid: b31b83d3119221f44a1daabaac39899e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.85955215
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3920253129339601811, guid: b31b83d3119221f44a1daabaac39899e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4.25
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3920253129339601811, guid: b31b83d3119221f44a1daabaac39899e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.85955215
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3920253129339601811, guid: b31b83d3119221f44a1daabaac39899e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.248
+      value: -6.16
       objectReference: {fileID: 0}
     - target: {fileID: 3920253129339601811, guid: b31b83d3119221f44a1daabaac39899e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2825,7 +2825,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3920253129339601811, guid: b31b83d3119221f44a1daabaac39899e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.00000017761
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3920253129339601811, guid: b31b83d3119221f44a1daabaac39899e, type: 3}
       propertyPath: m_LocalRotation.w

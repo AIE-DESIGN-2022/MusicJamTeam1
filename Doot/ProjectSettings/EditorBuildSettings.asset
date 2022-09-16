@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/HellLevel.unity
+    guid: 5d9cf2b117540fa46ac982a1f2a1c5b2
   m_configObjects: {}
