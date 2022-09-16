@@ -6,6 +6,7 @@ public enum Alive { alive, dead }
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Movement")]
     #region moveVariable
     public float walkingSpeed = 7.5f;
     public float runningSpeed = 11.5f;
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public bool canMove = true;
     #endregion
 
+    [Header("Health")]
     #region Health
     public float maxHealth, currentHealth;
     public float maxShield, currentShield;
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour
     bool takingDamage = false;
     #endregion
 
+    [Header("Grenade")]
     #region Grenades
     public int grenadeCount;
     public GameObject grenade;
@@ -38,6 +41,7 @@ public class PlayerController : MonoBehaviour
     public float grenadeCooldownTime;
     #endregion
 
+    [Header("Melee")]
     #region Melee
     public GameObject melee;
     Rigidbody meleeRigidbody;
