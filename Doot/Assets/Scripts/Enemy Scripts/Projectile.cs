@@ -37,6 +37,7 @@ public class Projectile : MonoBehaviour
             DealDamage();
         }
             
+        StartCoroutine(Despawn());
     }
 
     public virtual void DealDamage()
