@@ -8,6 +8,7 @@ public class Hud : MonoBehaviour
     public Text healthText;
     public Text buffs;
     public Text wave;
+    public Text score;
     public Text grenades;
     public Text shieldText;
     public Text one;
@@ -61,6 +62,7 @@ public class Hud : MonoBehaviour
         }
         grenades.text = "Grenades: " + playerController.grenadeCount;
         wave.text = "Wave: " + playerController.laps;
+        score.text = "Score: " + Mathf.Round(playerController.score);
         buffs.text = buff;
         if (Input.GetButtonDown("Fire1"))
         {

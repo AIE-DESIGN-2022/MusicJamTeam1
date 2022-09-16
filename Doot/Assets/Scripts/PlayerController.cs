@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         {
             PlayerMovement();
 
-            if(currentShield != maxShield && !takingDamage)
+            if(currentShield < maxShield && !takingDamage)
             {
                 ShieldRecharge();
             }
