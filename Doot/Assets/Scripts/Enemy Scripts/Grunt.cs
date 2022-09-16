@@ -24,6 +24,6 @@ public class Grunt : Enemy
         base.Attack();
         GameObject projectile = Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
         Projectile b = projectile.GetComponent<Projectile>();
-        b.maxDamage = 5;
+        b.maxDamage = maxDamage;
     }
 }

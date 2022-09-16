@@ -273,7 +273,7 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 10
   speed: 0
-  maxDamage: 0
+  maxDamage: 1
   attackSpeed: 3
   attackDelay: 0
   suspiciousThreshold: 15
