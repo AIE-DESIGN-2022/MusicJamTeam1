@@ -15,6 +15,10 @@ public class PhootDootGun : Gun
     public float rateOfFire;
     public float dootForce;
     private int layerMask;
+    private bool animCheck;
+    public AudioClip charge;
+    public AudioClip doot;
+    private bool audioCheck;
 
     PlayerController playController;
 
@@ -46,11 +50,27 @@ public class PhootDootGun : Gun
 
         if (m_HoldingDownMouseButton && lastFire + rateOfFire < Time.time /*&& playController.alive == Alive.alive*/)
         {
+            animator.SetBool("Doot", true);
+            if (audioCheck == false)
+            {
+                audioSource.clip = charge;
+                audioSource.loop = true;
+                audioSource.Play();
+                audioCheck = true;
+            }
             PhootDoot();
         }
         else if (!m_HoldingDownMouseButton)
         {
-            m_ActivatedDoot = false;
+            animator.SetBool("Doot", false);
+            if (audioCheck == true)
+            {
+                audioSource.clip = doot;
+                audioSource.loop = false;
+                audioSource.Play();
+                m_ActivatedDoot = false;
+                audioCheck = false;
+            }
 
             if (Range)
             {
@@ -65,8 +85,7 @@ public class PhootDootGun : Gun
             }
 
             m_Targetcolliders.Clear();
-        }
-        
+        }      
     }
 
     void PhootDoot()

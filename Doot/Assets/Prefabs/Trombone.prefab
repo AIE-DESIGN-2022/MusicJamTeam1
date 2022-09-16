@@ -2595,7 +2595,7 @@ Animator:
   m_GameObject: {fileID: 8197093991896805562}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7812dcec3d8e3f84c9ef8df9dc10a2a2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2623,6 +2623,8 @@ MonoBehaviour:
   range: 20
   rateOfFire: 3
   dootForce: 10
+  charge: {fileID: 8300000, guid: 6cf938ad3aeeb324cafbbf2951763770, type: 3}
+  doot: {fileID: 8300000, guid: 3ef606572198dc84a91e284b4d479e58, type: 3}
   m_StopRange: 2
 --- !u!1 &8612208510377999018
 GameObject:
