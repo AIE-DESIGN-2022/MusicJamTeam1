@@ -19,7 +19,11 @@ public class DootGun : Gun
     PlayerController playController;
 
     bool m_ActivatedDoot = false;
+
+    [SerializeField]
     float Timer = 1f;
+
+    float keepTrack = 0.0f;
 
     // Start is called before the first frame update
     override protected void Start()
@@ -32,6 +36,8 @@ public class DootGun : Gun
         buffManager = FindObjectOfType<BuffManager>();
         lastFire = -rateOfFire;
         layerMask = LayerMask.GetMask("Dootable");
+
+        keepTrack = Timer;
     }
 
     // Update is called once per frame
@@ -49,7 +55,7 @@ public class DootGun : Gun
             {
                 m_ActivatedDoot = false;
                 Range.SetActive(false);
-                Timer = 1f;
+                Timer = keepTrack;
             }
         }
     }
