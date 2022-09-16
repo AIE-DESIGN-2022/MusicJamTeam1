@@ -2621,8 +2621,9 @@ MonoBehaviour:
     m_Bits: 4294967295
   p1: {x: 0, y: 0, z: 0}
   range: 20
-  rateOfFire: 0
+  rateOfFire: 3
   dootForce: 10
+  m_StopRange: 2
 --- !u!1 &8612208510377999018
 GameObject:
   m_ObjectHideFlags: 0
