@@ -18,6 +18,10 @@ public class Enemy : MonoBehaviour
     PlayerController playerController;
     public GameObject healthDrop;
 
+    bool onNavemesh = false;
+    float navCheck = 3f;
+    NavMeshHit hit;
+
     #region Patrol
     protected NavMeshAgent agent;
     public List<Vector3> routes;
@@ -81,6 +85,9 @@ public class Enemy : MonoBehaviour
             TriggerDead();
         if (transform.position.y < -5 && !dead)
             TriggerDead();
+
+        onNavemesh = NavMesh.SamplePosition(transform.position, out hit, navCheck, NavMesh.AllAreas);
+        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -132,7 +139,7 @@ public class Enemy : MonoBehaviour
 
     void FollowRoutes()
     {
-        if(agent.enabled)
+        if(agent.enabled && onNavemesh)
             agent.SetDestination(routes[currentRoute]);                                    //set destination to current route on list
 
         float distance = Vector3.Distance(transform.position, routes[currentRoute]);   //check distance between enemy and route
@@ -172,7 +179,7 @@ public class Enemy : MonoBehaviour
 
     void SearchingUpdate()
     {
-        if (agent.enabled)
+        if (agent.enabled && onNavemesh)
             agent.SetDestination(focus.position);  //look for last known location
 
         if (Distance(focus.position) <= hostileThreshold)  //if we're close enough, start attacking
@@ -192,13 +199,13 @@ public class Enemy : MonoBehaviour
     {
         if (Distance(focus.position) <= attackThreshold)    //checks if target is within attack range
         {
-            if(agent.enabled)
+            if(agent.enabled && onNavemesh)
                 agent.SetDestination(transform.position);   //stop moving
 
             Vector3 dir = new Vector3(focus.position.x, transform.position.y, focus.position.z);    //look at target
             transform.LookAt(dir);
         }
-        else if(agent.enabled)
+        else if(agent.enabled && onNavemesh)
                 agent.SetDestination(focus.position);   //follow target if it moves away
             
         if (Distance(focus.position) >= hostileThreshold) //if focus gets out of range return to searching
