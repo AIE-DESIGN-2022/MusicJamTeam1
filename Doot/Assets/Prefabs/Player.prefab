@@ -580,11 +580,16 @@ MonoBehaviour:
   canMove: 1
   maxHealth: 50
   currentHealth: 0
+  maxShield: 100
+  currentShield: 0
+  shieldRechargeTime: 4
+  shieldRechargeRate: 2
   respawnButton: {fileID: 7663971656086080097}
   laps: 1
   grenadeCount: 5
   grenade: {fileID: 7584072201609112649, guid: b9615ffa74004b94ab7c01cb11ea5155, type: 3}
   grenadeSpawn: {fileID: 931048391}
+  grenadeCooldownTime: 1
   melee: {fileID: 5053314266676480646}
   alive: 0
 --- !u!143 &5895177126331530201
