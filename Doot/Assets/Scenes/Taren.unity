@@ -232,7 +232,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1494281579101070027, guid: 7526d0725dc2c4345a50a2ecbd7403b1, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1494281579101070027, guid: 7526d0725dc2c4345a50a2ecbd7403b1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -343,6 +343,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuffManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5856317259069574297, guid: 87c30e814b066c84288cca3ff3f9f993, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87c30e814b066c84288cca3ff3f9f993, type: 3}
 --- !u!1001 &1559681730
@@ -352,6 +356,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3401250922996561862, guid: 5d4f009a171f8204dae7db4fe9c32e41, type: 3}
+      propertyPath: keyword
+      value: LIGHT
+      objectReference: {fileID: 0}
+    - target: {fileID: 3401250922996561862, guid: 5d4f009a171f8204dae7db4fe9c32e41, type: 3}
+      propertyPath: objectsInScene.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3401250922996561862, guid: 5d4f009a171f8204dae7db4fe9c32e41, type: 3}
+      propertyPath: objectsInScene.Array.data[0]
+      value: GrenadeSpawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 3401250922996561862, guid: 5d4f009a171f8204dae7db4fe9c32e41, type: 3}
+      propertyPath: objectsInScene.Array.data[1]
+      value: EnemySpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 3401250922996561862, guid: 5d4f009a171f8204dae7db4fe9c32e41, type: 3}
+      propertyPath: objectsInScene.Array.data[2]
+      value: Spawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 3401250922996561862, guid: 5d4f009a171f8204dae7db4fe9c32e41, type: 3}
+      propertyPath: objectsInScene.Array.data[3]
+      value: Lightborn
+      objectReference: {fileID: 0}
+    - target: {fileID: 3401250922996561862, guid: 5d4f009a171f8204dae7db4fe9c32e41, type: 3}
+      propertyPath: objectsInScene.Array.data[4]
+      value: Grapefruit
+      objectReference: {fileID: 0}
     - target: {fileID: 5895177126331529767, guid: 5d4f009a171f8204dae7db4fe9c32e41, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -493,5 +525,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
