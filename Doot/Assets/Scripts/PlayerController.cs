@@ -48,6 +48,9 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     #endregion
 
+    [Header("Score")]
+    public int score;
+
     public Alive alive;
 
     void Start()

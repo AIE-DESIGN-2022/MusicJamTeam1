@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     public float suspiciousThreshold, hostileThreshold, attackThreshold;
     Collider col;
     EnemySpawner spawnerScript;
+    PlayerController playerController;
     public GameObject healthDrop;
 
     #region Patrol
@@ -41,6 +42,9 @@ public class Enemy : MonoBehaviour
         currentHealth = maxHealth;
         state = AIState.idle;
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerController = player.GetComponent<PlayerController>();
+        if (playerController == null)
+            Debug.LogError("Enemy does not find PlayerController");
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
@@ -85,15 +89,24 @@ public class Enemy : MonoBehaviour
             EnvironmentalDamage(collision);
         
         if(collision.collider.name == "Melee")
+        {
             currentHealth -= 20;
             meleeKilled = true;
-        
+            AddScore(rb.velocity.magnitude * 5);
+        }
     }
 
     void EnvironmentalDamage(Collision collision)
     {
         Debug.Log(name + " collided with " + collision.collider.name + " for " + rb.velocity.magnitude.ToString());
         currentHealth -= rb.velocity.magnitude;
+        AddScore(rb.velocity.magnitude);
+        
+    }
+
+    void AddScore(float score)
+    {
+        playerController.score += (int)score;
     }
 
     void StateCheck()
