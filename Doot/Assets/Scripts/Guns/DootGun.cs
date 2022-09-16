@@ -30,7 +30,7 @@ public class DootGun : Gun
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         buffManager = FindObjectOfType<BuffManager>();
-        lastFire = Time.time;
+        lastFire = -rateOfFire;
         layerMask = LayerMask.GetMask("Dootable");
     }
 

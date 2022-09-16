@@ -36,7 +36,7 @@ public class PhootDootGun : Gun
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         buffManager = FindObjectOfType<BuffManager>();
-        lastFire = Time.time;
+        lastFire = -rateOfFire;
         layerMask = LayerMask.GetMask("Dootable");
     }
     // Update is called once per frame
@@ -61,6 +61,7 @@ public class PhootDootGun : Gun
             {
                 collider.GetComponent<Rigidbody>().AddForce(-this.transform.right * dootForce * 100.0f);
                 collider.GetComponent<Enemy>().Doot();
+                lastFire = Time.time;
             }
 
             m_Targetcolliders.Clear();
@@ -91,8 +92,6 @@ public class PhootDootGun : Gun
         }
         
         m_ActivatedDoot = true;
-
-        lastFire = Time.time;
     }
 
 

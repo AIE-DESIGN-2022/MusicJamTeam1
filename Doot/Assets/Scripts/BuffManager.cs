@@ -77,4 +77,9 @@ public class BuffManager : MonoBehaviour
         }
         Destroy(pickUp);
     }
+    public void Grenade(GameObject pickUp)
+    {
+        playerController.grenadeCount += 1;
+        Destroy(pickUp);
+    }
 }
