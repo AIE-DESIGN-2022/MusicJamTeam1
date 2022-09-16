@@ -1512,6 +1512,7 @@ MonoBehaviour:
   buffs: {fileID: 2031816373}
   wave: {fileID: 4644232773332810682}
   grenades: {fileID: 4931716029060813483}
+  shieldText: {fileID: 1699155338017390654}
   one: {fileID: 9191729557910522541}
   two: {fileID: 2469059639017216866}
   three: {fileID: 7382212163727813650}

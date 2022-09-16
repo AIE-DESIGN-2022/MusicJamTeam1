@@ -9,6 +9,7 @@ public class Hud : MonoBehaviour
     public Text buffs;
     public Text wave;
     public Text grenades;
+    public Text shieldText;
     public Text one;
     public Text two;
     public Text three;
@@ -42,7 +43,22 @@ public class Hud : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthText.text = "" + Mathf.Round(playerController.currentHealth * 2);
+        if (playerController.currentHealth > 0)
+        {
+            healthText.text = "" + Mathf.Round(playerController.currentHealth * 2);
+        }
+        else
+        {
+            healthText.text = "0";
+        }
+        if (playerController.currentShield > 0)
+        {
+            shieldText.text = "" + Mathf.Round(playerController.currentShield);
+        }
+        else
+        {
+            shieldText.text = "0";
+        }
         grenades.text = "Grenades: " + playerController.grenadeCount;
         wave.text = "Wave: " + playerController.laps;
         buffs.text = buff;
