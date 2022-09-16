@@ -7,6 +7,7 @@ public class Grenade : MonoBehaviour
     Rigidbody rb;
     [SerializeField]
     GameObject trigger;
+    [SerializeField] float grenadeTimer = 2;
     public float throwForce;
     public List<Enemy> enemyList;
 
@@ -21,7 +22,7 @@ public class Grenade : MonoBehaviour
 
     IEnumerator BlowUp()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(grenadeTimer);
         trigger.SetActive(true);
         yield return new WaitForSeconds(0.2f);
 
