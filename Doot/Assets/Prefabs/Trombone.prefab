@@ -2623,6 +2623,8 @@ MonoBehaviour:
   range: 20
   rateOfFire: 3
   dootForce: 10
+  charge: {fileID: 8300000, guid: 6cf938ad3aeeb324cafbbf2951763770, type: 3}
+  doot: {fileID: 8300000, guid: 3ef606572198dc84a91e284b4d479e58, type: 3}
   m_StopRange: 2
 --- !u!1 &8612208510377999018
 GameObject:
